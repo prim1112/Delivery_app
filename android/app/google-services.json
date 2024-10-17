@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "961151964898",
+    "project_id": "flutter-firebase-prim",
+    "storage_bucket": "flutter-firebase-prim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961151964898:android:dd5a46541794ba121030bb",
+        "android_client_info": {
+          "package_name": "com.example.flutter_delivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsgtgju1D8d0Ifkqcj5Z8e8Ez6uHOnh_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
