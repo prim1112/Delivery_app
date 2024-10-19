@@ -23,6 +23,25 @@
                     }
                 },
                 {
+                    "source": "D:\\fluterr\\project2_flutter\\new_project\\flutter_delivery_\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "176,832",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "483,998"
+                    },
+                    "to": {
+                        "startLines": "188,192",
+                        "startColumns": "4,4",
+                        "startOffsets": "11618,11799",
+                        "endLines": "191,194",
+                        "endColumns": "12,12",
+                        "endOffsets": "11794,11963"
+                    }
+                },
+                {
                     "source": "C:\\Users\\HUAWEI\\.gradle\\caches\\transforms-3\\689b48c76e2845edc7d820ceef6aa547\\transformed\\jetified-startup-runtime-1.1.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -131,23 +150,6 @@
                     }
                 },
                 {
-                    "source": "D:\\fluterr\\flutter_delivery\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,137,241,350,470,575",
-                        "endColumns": "81,103,108,119,104,81",
-                        "endOffsets": "132,236,345,465,570,652"
-                    },
-                    "to": {
-                        "startLines": "181,182,183,184,185,186",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "10945,11027,11131,11240,11360,11465",
-                        "endColumns": "81,103,108,119,104,81",
-                        "endOffsets": "11022,11126,11235,11355,11460,11542"
-                    }
-                },
-                {
                     "source": "C:\\Users\\HUAWEI\\.gradle\\caches\\transforms-3\\6a4aa16c60ca8a9cd3760087847c7478\\transformed\\lifecycle-runtime-2.7.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -165,22 +167,20 @@
                     }
                 },
                 {
-                    "source": "D:\\fluterr\\flutter_delivery\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "D:\\fluterr\\project2_flutter\\new_project\\flutter_delivery_\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
                     "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "176,832",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "483,998"
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,137,241,350,470,575",
+                        "endColumns": "81,103,108,119,104,81",
+                        "endOffsets": "132,236,345,465,570,652"
                     },
                     "to": {
-                        "startLines": "188,192",
-                        "startColumns": "4,4",
-                        "startOffsets": "11618,11799",
-                        "endLines": "191,194",
-                        "endColumns": "12,12",
-                        "endOffsets": "11794,11963"
+                        "startLines": "181,182,183,184,185,186",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "10945,11027,11131,11240,11360,11465",
+                        "endColumns": "81,103,108,119,104,81",
+                        "endOffsets": "11022,11126,11235,11355,11460,11542"
                     }
                 },
                 {

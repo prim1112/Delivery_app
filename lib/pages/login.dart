@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/Rider/rider_home_screen.dart';
 import 'package:flutter_delivery/pages/homepage.dart';
+import 'package:flutter_delivery/pages/sender_or_receiver.dart';
 import 'package:flutter_delivery/pages/shared/app_data.dart';
 import 'package:flutter_delivery/pages/user_or_rider.dart';
 
@@ -175,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
-                                'หากมีบัญชีอยู่แล้ว',
+                                'หากไม่มีบัญชี',
                                 style: TextStyle(fontSize: 12), // ลดขนาดฟอนต์
                               ),
                               Padding(
@@ -183,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                                 child: TextButton(
                                   onPressed: register,
                                   child: const Text(
-                                    'เข้าสู่ระบบ',
+                                    'สมัครสมาชิก',
                                     style: TextStyle(
                                       fontSize: 14, // ขนาดฟอนต์ของปุ่ม
                                       color: Color.fromARGB(255, 255, 0, 0),
@@ -355,7 +356,7 @@ class _LoginPageState extends State<LoginPage> {
         'StatusLogin': "ล็อกอินแล้ว",
       };
       await db.collection('user').doc(userData['id'].toString()).update(data);
-      Get.to(() => const UserOrRiderPage());
+      Get.to(() => const Sender_ReceiverPage());
     } else {
       showErrorDialog(
           'รหัสผ่านไม่ถูกต้อง', 'โปรดตรวจสอบรหัสผ่านอีกครั้ง', context);

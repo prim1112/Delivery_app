@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 
 class Appdata with ChangeNotifier {
-  String imageDefaltRider = 'assets/images/profile.jpg';
-  String imageDefaltUser = 'assets/images/profile1.jpg';
+  String imageDefaltRider = 'assets/images/profile.png';
+  String imageDefaltUser = 'assets/images/profile1.png';
   LatLng latLng = const LatLng(0, 0);
   late UserProfile user;
 }

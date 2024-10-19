@@ -2,10 +2,14 @@ import 'package:flutter_delivery/sender/ConfirmOrderPage.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
-
-class ConfirmOrderPage extends StatelessWidget {
+class ConfirmOrderPage extends StatefulWidget {
   const ConfirmOrderPage({super.key});
 
+  @override
+  State<ConfirmOrderPage> createState() => _ConfirmOrderPageState();
+}
+
+class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -20,21 +24,24 @@ class ConfirmOrderPage extends StatelessWidget {
             children: [
               // Padding ข้างบนสุด
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 30, 0, 10), // ลด padding ข้างบนลง
+                padding: const EdgeInsets.fromLTRB(0, 30, 0, 100), // ลด padding ข้างบนลง
               ),
               // ส่วนเนื้อหาหลัก
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: SizedBox(
-                  width: screenWidth * 1, // เพิ่มขนาดความกว้างของการ์ดให้ใหญ่ขึ้น
+                  width:
+                      screenWidth * 1, // เพิ่มขนาดความกว้างของการ์ดให้ใหญ่ขึ้น
                   height: screenHeight * 1, // เพิ่มความสูงการ์ดให้ใหญ่ขึ้น
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20), // ความโค้งของมุมการ์ด
+                      borderRadius:
+                          BorderRadius.circular(20), // ความโค้งของมุมการ์ด
                     ),
                     color: const Color(0xfffafafa),
                     child: Padding(
-                      padding: const EdgeInsets.all(15), // ลด padding ข้างในการ์ดลง
+                      padding:
+                          const EdgeInsets.all(15), // ลด padding ข้างในการ์ดลง
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -49,10 +56,13 @@ class ConfirmOrderPage extends StatelessWidget {
                           ),
                           Text(
                             'กุ้งดอง+แซลมอน\nไก่ทอดซอสเกาหลี',
-                            style: TextStyle(fontSize: 14, color: Colors.black), // ลดขนาดฟอนต์ลง
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black), // ลดขนาดฟอนต์ลง
                           ),
-                          SizedBox(height: 15), // ลดช่องว่างระหว่างส่วนต่าง ๆ ลง
-                          
+                          SizedBox(
+                              height: 15), // ลดช่องว่างระหว่างส่วนต่าง ๆ ลง
+
                           // ข้อมูลผู้รับสินค้า
                           Text(
                             'ผู้รับสินค้า',
@@ -64,20 +74,22 @@ class ConfirmOrderPage extends StatelessWidget {
                           ),
                           Text(
                             'user1\n0987654321\n87/1 pp lim mm',
-                            style: TextStyle(fontSize: 14, color: Colors.black), // ลดขนาดฟอนต์ลง
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black), // ลดขนาดฟอนต์ลง
                           ),
                           SizedBox(height: 15), // ลดช่องว่างลง
-                          
+
                           // การอัปโหลดรูปภาพ
                           Center(
                             child: Column(
                               children: [
                                 Container(
-                                  width: 200, // ลดขนาดกล่องรูปภาพลง
-                                  height: 120, // ลดความสูงของกล่องลง
+                                  width: 280, // ลดขนาดกล่องรูปภาพลง
+                                  height: 220, // ลดความสูงของกล่องลง
                                   decoration: BoxDecoration(
                                     border: Border.all(color: Colors.black),
-                                    borderRadius: BorderRadius.circular(8), // ลดความโค้งมุมของกล่องลง
+                                    borderRadius: BorderRadius.circular(20), // ลดความโค้งมุมของกล่องลง
                                   ),
                                   child: Center(
                                     child: Text(
@@ -87,41 +99,78 @@ class ConfirmOrderPage extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 10),
-                                Align(
-                                  alignment: Alignment.centerRight, // จัดปุ่มให้อยู่ด้านขวา
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      // ฟังก์ชันถ่ายรูปหรืออัปโหลดรูปภาพ
-                                    },
-                                    child: Text('กล้อง', style: TextStyle(fontSize: 14)), // ลดขนาดฟอนต์ปุ่มลง
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.amber[700],
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(15), // ลดความโค้งของปุ่มลง
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 200,
+                                      height: 40,
+                                      child: TextField(
+                                        // controller: phoneCtl,
+                                        keyboardType: TextInputType.phone,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide.none,
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide.none,
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        child: const Text(
+                                          'กล้อง',
+                                          style: TextStyle(
+                                            color: Color(0xFFFAFAFA),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xffffd54f),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                           ),
                           SizedBox(height: 25), // ลดช่องว่างลง
-                          
+
                           // ปุ่มยืนยันออร์เดอร์
-                          Center(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                // ฟังก์ชันยืนยันออร์เดอร์
-                              },
-                              child: Text('ยืนยันออร์เดอร์', style: TextStyle(fontSize: 14)), // ลดขนาดฟอนต์ของปุ่มลง
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.red,
-                                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 14), // ลดขนาดปุ่มลง
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15), // ลดความโค้งของปุ่มลง
+                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(20),
+                                child: ElevatedButton(
+                                  onPressed: (){},
+                                  child: Text(
+                                    'ยืนยันออร์เดอร์',
+                                    style: TextStyle(
+                                      color: Color(0xFFFAFAFA),
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor:
+                                        const Color.fromARGB(255, 0, 0, 0),
+                                    backgroundColor: Color(0xffd32f2f),
+                                  ),
                                 ),
-                              ),
-                            ),
+                              )
+                            ],
                           ),
                         ],
                       ),

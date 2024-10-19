@@ -85,7 +85,7 @@ class _HomepageState extends State<Homepage> {
                             width: 200, // ความกว้างที่ต้องการ
                             height: 50, // ความสูงที่ต้องการ
                             child: ElevatedButton(
-                              onPressed: userorrider,
+                              onPressed: register,
                               child: Text(
                                 'สมัครสมาชิก',
                                 style: TextStyle(
@@ -113,7 +113,7 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  void userorrider() {
+  void register() {
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -125,7 +125,7 @@ class _HomepageState extends State<Homepage> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => UserOrRiderPage(),
+          builder: (context) => LoginPage(),
         ));
   }
 }

@@ -73,7 +73,7 @@ class _UserOrRiderPageState extends State<UserOrRiderPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.fromLTRB(30, 0, 10, 0),
+                                padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
                                 child: Text(
                                   'การเลือกสมัครสมาชิก',
                                   style: TextStyle(
@@ -145,7 +145,7 @@ class _UserOrRiderPageState extends State<UserOrRiderPage> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SenderPage(),
+          builder: (context) => User_registerPage(),
         ));
   }
 
@@ -153,7 +153,7 @@ class _UserOrRiderPageState extends State<UserOrRiderPage> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SenderPage(),
+          builder: (context) => Rider_registerPage(),
         ));
   }
 }

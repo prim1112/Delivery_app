@@ -6,6 +6,11 @@ import 'package:flutter_delivery/Rider/rider_home_screen.dart';
 import 'package:flutter_delivery/firebase_options.dart';
 import 'package:flutter_delivery/pages/shared/app_data.dart';
 import 'package:flutter_delivery/pages/homepage.dart';
+import 'package:flutter_delivery/sender/ConfirmOrderPage.dart';
+import 'package:flutter_delivery/sender/RiderTrackingScreen.dart';
+import 'package:flutter_delivery/sender/RiderWaitingScreen.dart';
+import 'package:flutter_delivery/sender/home_sender.dart';
+import 'package:flutter_delivery/sender/product_list.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:get_storage/get_storage.dart';
@@ -44,7 +49,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  DeliveryStatusScreen(),  // เปลี่ยนหน้าเริ่มต้นที่นี่
+      home:  SenderPage(),  // เปลี่ยนหน้าเริ่มต้นที่นี่
     );
   }
 }

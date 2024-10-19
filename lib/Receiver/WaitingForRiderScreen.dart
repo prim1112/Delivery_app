@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery/Receiver/WaitingForRiderScreen.dart';
 import 'package:flutter_delivery/pages/navber.dart';
 
 class DeliveryStatusScreen extends StatefulWidget {

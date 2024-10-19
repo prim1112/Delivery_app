@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/navber.dart';
-import 'package:flutter_delivery/sender/home_sender.dart'; 
-
+import 'package:flutter_delivery/sender/home_sender.dart';
+import 'package:flutter_delivery/sender/popup.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
@@ -16,109 +16,123 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('รายการส่งสินค้า'),
-        centerTitle: true,
-        backgroundColor: Colors.red,
-      ),
-      body: Container(
-        color: Colors.red, // สีพื้นหลังเต็มหน้า
-        child: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white, // สีพื้นหลังการ์ด
-              borderRadius: BorderRadius.vertical(top: Radius.circular(30)), // มุมโค้งที่ด้านบน
+      backgroundColor: const Color(0xffd32f2f),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 80, 0, 30),
+                  child: Text(
+                    'รายการส่งสินค้า',
+                    style: TextStyle(
+                      color: Color(0xFFFAFAFA),
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // แสดงข้อมูลผู้ใช้
-                  Text(
-                    'user1',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  Text('0987654321'),
-                  SizedBox(height: 8),
-                  Text('899/1 vbn mkj'),
-                  SizedBox(height: 20), // เพิ่มช่องว่าง
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30), // กำหนดมุมโค้ง
+              ),
+              color: Color(0xfffafafa), // ใส่สีพื้นหลัง
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // แสดงข้อมูลผู้ใช้
+                    Text(
+                      'user1',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 8),
+                    Text('0987654321'),
+                    SizedBox(height: 8),
+                    Text('899/1 vbn mkj'),
+                    SizedBox(height: 20), // เพิ่มช่องว่าง
 
-                  // ส่วนเพิ่มรายการสินค้า
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          // ฟังก์ชันที่ทำงานเมื่อกดปุ่ม
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red, // สีของปุ่ม
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30), // มุมโค้ง
+                    // ส่วนเพิ่มรายการสินค้า
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              showAddItemDialog(
+                                  context); // เรียกฟังก์ชันเพื่อแสดง dialog
+                            },
+                            child: Text(
+                              '+เพิ่มรายการ',
+                              style: TextStyle(
+                                color: Color(0xFFFAFAFA),
+                                fontSize: 16,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor:
+                                  const Color.fromARGB(255, 0, 0, 0),
+                              backgroundColor: Color(0xffd32f2f),
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          '+เพิ่มรายการ',
-                          style: TextStyle(fontSize: 10), // ขนาดตัวอักษรสำหรับปุ่ม
-                        ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 8),
+
+                    // รายการอาหาร 1
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(15), // มุมโค้งของการ์ด
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 8),
-
-                  // รายการอาหาร 1
-                  ListTile(
-                    leading: Image.asset(
-                      'assets/images/food2.png', // เปลี่ยนเป็นรูปจริงในโปรเจคของคุณ
-                      width: 50,
-                      height: 50,
+                      elevation: 4, // ความลึกเงาของการ์ด
+                      margin: EdgeInsets.symmetric(
+                          vertical: 8), // เพิ่มช่องว่างระหว่างการ์ด
+                      child: ListTile(
+                        leading: Image.asset(
+                          'assets/images/food2.png', // เปลี่ยนเป็นรูปจริงในโปรเจคของคุณ
+                          width: 50,
+                          height: 50,
+                        ),
+                        title: Text('รายละเอียด'),
+                        subtitle: Text('กุ้งดองแซลม่อน'),
+                      ),
                     ),
-                    title: Text('รายละเอียดสินค้า'),
-                    subtitle: Text('กุ้งดองแซลม่อน'),
-                  ),
-                  Divider(),
-
-                  // รายการอาหาร 2
-                  ListTile(
-                    leading: Image.asset(
-                      'assets/images/food2.png',
-                      width: 50,
-                      height: 50,
-                    ),
-                    title: Text('รายละเอียดสินค้า'),
-                    subtitle: Text('ไก่ทอดซอสเกาหลี'),
-                  ),
-                  Divider(),
-
-                  SizedBox(height: 20),
-
-                  // ปุ่มถัดไป
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // กำหนดการทำงานเมื่อกดปุ่ม
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SenderPage(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text(
+                              'ถัดไป',
+                              style: TextStyle(
+                                color: Color(0xFFFAFAFA),
+                                fontSize: 20,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor:
+                                  const Color.fromARGB(255, 0, 0, 0),
+                              backgroundColor: Color(0xffd32f2f),
+                            ),
                           ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                        backgroundColor: Colors.red,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                      child: Text('ถัดไป'),
+                        )
+                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
       bottomNavigationBar: CustomNavigationBar(
