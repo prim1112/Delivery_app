@@ -338,25 +338,42 @@ class _LoginPageState extends State<LoginPage> {
     // ได้ข้อมูลผู้ใช้
     var userData = querySnapshot.docs[0].data();
     var storedHash = userData['password'];
-    // var statusLogin = userData['StatusLogin'];
+    var statusLogin = userData['StatusLogin'];
 
     // ตรวจสอบรหัสผ่าน
     if (storedHash == password) {
-      // if (statusLogin == "ล็อกอินแล้ว") {
-      //   showErrorDialog('แจ้งเตือน',
-      //       'ไม่สามารถล็อกอินได้เนื่องจากได้มีการล็อกอินจากอีกที่', context);
-      //   return;
-      // }
+      if (statusLogin == "ล็อกอินแล้ว") {
+        showErrorDialog('แจ้งเตือน',
+            'ไม่สามารถล็อกอินได้เนื่องจากได้มีการล็อกอินจากอีกที่', context);
+        return;
+      }
       UserProfile userProfile = UserProfile();
-      userProfile.id = userData['id'];
+      userProfile.id = userData['uid'];
       context.read<Appdata>().user = userProfile;
-      storage.write('id', userData['id']);
-      storage.write('userStatusType', "User");
+      storage.write('uid', userData['uid']);
+      storage.write('StatusLogin', "user");
       var data = {
         'StatusLogin': "ล็อกอินแล้ว",
       };
-      await db.collection('user').doc(userData['id'].toString()).update(data);
-      Get.to(() => const Sender_ReceiverPage());
+      await db.collection('user').doc(userData['uid'].toString()).update(data);
+      
+       var DocUser = db.collection('user').doc(userData['uid'].toString());
+
+      context.read<Appdata>().checkDocUser = DocUser.snapshots().listen(
+        (userSnapshot) {
+          if (!userSnapshot.exists) {
+            // ถ้าเอกสารถูกลบจะทำการ Logout
+            log("Document has been deleted. Logging out...");
+            Logout();
+          } else {
+            // กรณีที่เอกสารยังคงมีอยู่และมีข้อมูล
+            log("User data exists.");
+          }
+        },
+        onError: (error) => log("User listen failed: $error"),
+      );
+      // Get.to(() => const Sender_ReceiverPage());
+      Get.to(() => const SenderPage());
     } else {
       showErrorDialog(
           'รหัสผ่านไม่ถูกต้อง', 'โปรดตรวจสอบรหัสผ่านอีกครั้ง', context);
@@ -385,29 +402,79 @@ class _LoginPageState extends State<LoginPage> {
     // ได้ข้อมูลผู้ใช้
     var userData = querySnapshot.docs[0].data();
     var storedHash = userData['password'];
-    // var statusLogin = userData['StatusLogin'];
+    var statusLogin = userData['StatusLogin'];
 
     // ตรวจสอบรหัสผ่าน
     if (storedHash == password) {
-      // if (statusLogin == "ล็อกอินแล้ว") {
-      //   showErrorDialog('แจ้งเตือน',
-      //       'ไม่สามารถล็อกอินได้เนื่องจากได้มีการล็อกอินจากอีกที่', context);
-      //   return;
+      if (statusLogin == "ล็อกอินแล้ว") {
+        showErrorDialog('แจ้งเตือน',
+            'ไม่สามารถล็อกอินได้เนื่องจากได้มีการล็อกอินจากอีกที่', context);
+        return;
 
-      // }
+      }
       UserProfile userProfile = UserProfile();
-      userProfile.id = userData['id'];
+      userProfile.id = userData['uid'];
       context.read<Appdata>().user = userProfile;
-      storage.write('id', userData['id']);
-      storage.write('userStatusType', "Rider");
+      storage.write('uid', userData['uid']);
+      storage.write('StatusLogin', "rider");
+      storage.write('StatusLogin', "rider");
       var data = {
         'StatusLogin': "ล็อกอินแล้ว",
       };
       await db.collection('rider').doc(userData['id'].toString()).update(data);
+          var DocRider = db.collection('rider').doc(userData['id'].toString());
+
+      context.read<Appdata>().checkDocUser = DocRider.snapshots().listen(
+        (userSnapshot) {
+          if (!userSnapshot.exists) {
+            // ถ้าเอกสารถูกลบจะทำการ Logout
+            log("Document has been deleted. Logging out...");
+            Logout();
+          } else {
+            // กรณีที่เอกสารยังคงมีอยู่และมีข้อมูล
+            log("Rider data exists.");
+          }
+          setState(() {}); // อัปเดต UI
+        },
+        onError: (error) => log("Rider listen failed: $error"),
+      );
       Get.to(() => OrderDetailsScreen());
     } else {
       showErrorDialog(
           'รหัสผ่านไม่ถูกต้อง', 'โปรดตรวจสอบรหัสผ่านอีกครั้ง', context);
     }
+  }
+  
+  void Logout() async {
+    if (context.read<Appdata>().listener != null) {
+      context.read<Appdata>().listener!.cancel();
+      context.read<Appdata>().listener = null;
+      log('Stop listener');
+    }
+    if (context.read<Appdata>().listener2 != null) {
+      context.read<Appdata>().listener2!.cancel();
+      context.read<Appdata>().listener2 = null;
+      log('Stop listener2');
+    }
+    if (context.read<Appdata>().listener3 != null) {
+      context.read<Appdata>().listener3!.cancel();
+      context.read<Appdata>().listener3 = null;
+      log('Stop listener3');
+    }
+    if (context.read<Appdata>().time != null) {
+      context.read<Appdata>().time!.cancel();
+      context.read<Appdata>().time = null;
+      log('Stop time');
+    }
+    if (context.read<Appdata>().checkDocUser != null) {
+      context.read<Appdata>().checkDocUser!.cancel();
+      context.read<Appdata>().checkDocUser = null;
+      log('Stop checkDocUser');
+    }
+    GetStorage storage = GetStorage();
+    storage.erase();
+    Navigator.of(context).popUntil((route) => route.isFirst);
+    showErrorDialog(
+        'แจ้งเตือน', 'คุณโดนลบออกจากระบบ', context);
   }
 }
