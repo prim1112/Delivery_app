@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/rider_register.dart';
 import 'package:flutter_delivery/pages/user_register.dart';
 import 'package:flutter_delivery/sender/home_sender.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class UserOrRiderPage extends StatefulWidget {
   const UserOrRiderPage({super.key});
@@ -141,19 +143,28 @@ class _UserOrRiderPageState extends State<UserOrRiderPage> {
     );
   }
 
-  void user() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => User_registerPage(),
-        ));
+  // void user() {
+  //   Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => User_registerPage(),
+  //       ));
+  // }
+
+  // void rider() {
+  //   Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => Rider_registerPage(),
+  //       ));
+  // }
+
+
+    void rider() {
+    Get.to(() => Rider_registerPage()); // ใช้ Get.to() แทน Navigator.push()
   }
 
-  void rider() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Rider_registerPage(),
-        ));
+  void user() {
+    Get.to(() => User_registerPage()); // ใช้ Get.to() แทน Navigator.push()
   }
 }
