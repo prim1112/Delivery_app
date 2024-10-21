@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/login.dart';
 import 'package:flutter_delivery/pages/user_or_rider.dart';
+import 'package:get/get.dart'; // เพิ่มการนำเข้า GetX
 import 'dart:developer';
 
 class Homepage extends StatefulWidget {
@@ -43,13 +44,10 @@ class _HomepageState extends State<Homepage> {
                     ),
                     color: Color(0xfffafafa), // ใส่สีพื้นหลัง
                     child: Padding(
-                      // padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                       padding: EdgeInsets.all(10),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment
-                            .start, // จัดให้ทุกอย่างอยู่ตรงกลางในแนวตั้ง
-                        crossAxisAlignment: CrossAxisAlignment
-                            .center, // จัดให้อยู่ตรงกลางในแนวนอน
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             'Welcome!',
@@ -61,8 +59,8 @@ class _HomepageState extends State<Homepage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 50, 0, 40),
                             child: SizedBox(
-                              width: 200, // ความกว้างที่ต้องการ
-                              height: 50, // ความสูงที่ต้องการ
+                              width: 200,
+                              height: 50,
                               child: ElevatedButton(
                                 onPressed: login,
                                 child: Text(
@@ -80,10 +78,10 @@ class _HomepageState extends State<Homepage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 20), // ระยะห่างระหว่างข้อความและปุ่ม
+                          SizedBox(height: 20),
                           SizedBox(
-                            width: 200, // ความกว้างที่ต้องการ
-                            height: 50, // ความสูงที่ต้องการ
+                            width: 200,
+                            height: 50,
                             child: ElevatedButton(
                               onPressed: register,
                               child: Text(
@@ -114,18 +112,11 @@ class _HomepageState extends State<Homepage> {
   }
 
   void register() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => UserOrRiderPage(),
-        ));
+    Get.to(() => UserOrRiderPage()); // ใช้ Get.to() แทน Navigator.push()
   }
 
   void login() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => LoginPage(),
-        ));
+    Get.to(() => LoginPage()); // ใช้ Get.to() แทน Navigator.push()
   }
+  
 }
