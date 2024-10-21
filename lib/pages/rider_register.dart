@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/homepage.dart';
+import 'package:flutter_delivery/pages/login.dart';
 import 'package:flutter_delivery/pages/shared/app_data.dart';
 import 'package:flutter_delivery/sender/home_sender.dart';
 import 'package:image_picker/image_picker.dart';
@@ -453,12 +454,12 @@ class _Rider_registerPageState extends State<Rider_registerPage> {
   Future<int> generateNewUserId() async {
     QuerySnapshot querySnapshot = await db
         .collection('rider')
-        .orderBy('id', descending: true)
+        .orderBy('uid', descending: true)
         .limit(1)
         .get(); // ดึงเอกสารล่าสุดตามลำดับตัวเลขที่ลดลง
 
     if (querySnapshot.docs.isNotEmpty) {
-      int lastId = querySnapshot.docs.first['id']; // ดึง ID ล่าสุดจากเอกสาร
+      int lastId = querySnapshot.docs.first['uid']; // ดึง ID ล่าสุดจากเอกสาร
       return lastId + 1; // สร้าง ID ใหม่โดยเพิ่ม 1
     } else {
       return 1; // ถ้ายังไม่มีเอกสาร ให้เริ่มที่ 1
@@ -475,7 +476,7 @@ class _Rider_registerPageState extends State<Rider_registerPage> {
       pathImage = null; // ใช้ภาพที่มีอยู่แล้วถ้าไม่ได้เปลี่ยน
     }
     var data = {
-      'id': newUserId, // เก็บ ID ใหม่ลงในเอกสาร
+      'uid': newUserId, // เก็บ ID ใหม่ลงในเอกสาร
       'name': nameCtl.text,
       'phone': phoneCtl.text,
       'password': passwordCtl.text,
@@ -493,7 +494,7 @@ class _Rider_registerPageState extends State<Rider_registerPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SenderPage(), // ใส่หน้า SenderPage ที่ต้องการไป
+        builder: (context) => LoginPage(), // ใส่หน้า SenderPage ที่ต้องการไป
       ),
     );
   }
