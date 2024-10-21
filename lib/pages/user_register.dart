@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/homepage.dart';
+import 'package:flutter_delivery/pages/login.dart';
 import 'package:flutter_delivery/pages/shared/app_data.dart';
-import 'package:flutter_delivery/sender/home_sender.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
@@ -293,18 +293,12 @@ class _User_registerPageState extends State<User_registerPage> {
                                                           initialCenter:
                                                               latLng, // กำหนดตำแหน่งเริ่มต้น
                                                           initialZoom: 15.0,
-                                                          onTap: (tapPosition,
-                                                              point) {
-                                                            setState(() {
-                                                              latLng = point;
-                                                              log(latLng
-                                                                  .toString());
+                                                          onTap: (tapPosition,point) {
+                                                            setState(() {latLng = point;
+                                                              log(latLng.toString());
                                                             });
                                                             mapController.move(
-                                                                latLng,
-                                                                mapController
-                                                                    .camera
-                                                                    .zoom);
+                                                                latLng,mapController.camera.zoom);
                                                           },
                                                         ),
                                                         children: [
@@ -589,7 +583,7 @@ class _User_registerPageState extends State<User_registerPage> {
       pathImage = null; // ใช้ภาพที่มีอยู่แล้วถ้าไม่ได้เปลี่ยน
     }
     var data = {
-      'id': newUserId,
+      'uid': newUserId,
       'name': nameCtl.text,
       'phone': phoneCtl.text,
       'address': addressCtl.text,
@@ -605,7 +599,7 @@ class _User_registerPageState extends State<User_registerPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SenderPage(),
+        builder: (context) => LoginPage(),
       ),
     );
   }
@@ -667,12 +661,12 @@ class _User_registerPageState extends State<User_registerPage> {
   Future<int> generateNewUserId() async {
     QuerySnapshot querySnapshot = await db
         .collection('user')
-        .orderBy('id', descending: true)
+        .orderBy('uid', descending: true)
         .limit(1)
         .get();
 
     if (querySnapshot.docs.isNotEmpty) {
-      int lastId = querySnapshot.docs.first['id'];
+      int lastId = querySnapshot.docs.first['uid'];
       return lastId + 1;
     } else {
       return 1;
